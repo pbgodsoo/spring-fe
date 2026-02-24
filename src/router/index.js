@@ -1,5 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import Board from '@/views/Board.vue'
+import BoardDetail from '@/views/BoardDetail.vue'
 
 const routes = [
   {
@@ -7,6 +8,7 @@ const routes = [
     name: 'Board',
     component: Board,
   },
+  { path: '/board/:idx', name: 'BoardDetail', component: BoardDetail },
 ]
 
 const router = createRouter({

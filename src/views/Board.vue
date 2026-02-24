@@ -23,7 +23,7 @@
     <p v-if="listMsg" class="msg">{{ listMsg }}</p>
 
     <ul v-if="boards.length" class="list">
-      <li v-for="b in boards" :key="b.idx" class="listItem">
+      <li v-for="b in boards" :key="b.idx" class="listItem clickable" @click="goDetail(b.idx)">
         <span class="idx">#{{ b.idx }}</span>
         <span class="title">{{ b.title }}</span>
       </li>
@@ -37,7 +37,10 @@
 
 <script setup>
 import { ref, onMounted } from 'vue'
+import { useRouter } from 'vue-router'
 import api from '@/plugins/axiosinterceptor'
+
+const router = useRouter()
 
 const title = ref('')
 const content = ref('')
@@ -95,6 +98,11 @@ async function submit() {
     loadingWrite.value = false
   }
 }
+
+function goDetail(idx) {
+  router.push(`/board/${idx}`)
+}
+
 onMounted(() => {
   fetchList()
 })
